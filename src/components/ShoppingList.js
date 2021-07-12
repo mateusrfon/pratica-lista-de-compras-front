@@ -9,7 +9,6 @@ export default function ShoppingList() {
   useEffect(loadItems, []);
 
   function loadItems() {
-    // Get items from back-end and update state
     axios.get('http://localhost:4000/items')
     .then(res => {
       const items = res.data;
