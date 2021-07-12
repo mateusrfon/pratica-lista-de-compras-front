@@ -10,7 +10,7 @@ export default function ShoppingList() {
 
   function loadItems() {
     // Get items from back-end and update state
-    axios.get('http://localhost:4000/list')
+    axios.get('http://localhost:4000/items')
     .then(res => {
       const items = res.data;
       setItems(res.data);
