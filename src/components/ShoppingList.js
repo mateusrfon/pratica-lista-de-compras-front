@@ -1,19 +1,29 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import InsertForm from "./InsertForm";
 
 export default function ShoppingList() {
-  // Fake data
-  const [items, setItems] = useState([
-    { id: 1, text: "Pão" },
-    { id: 2, text: "Salsicha" },
-    { id: 3, text: "Ketchup" },
-  ]);
+  const [items, setItems] = useState([]);
 
   useEffect(loadItems, []);
 
   function loadItems() {
     // Get items from back-end and update state
+    axios.get('http://localhost:3000/list')
+    .then(res => {
+      const items = res.data;
+      setItems(res.data);
+    })
+    .catch(() => {
+      alert('não foi possível carregar, carregando lista de exemplo no lugar.');
+      //fake data
+      setItems([
+        { id: 1, text: "Pão" },
+        { id: 2, text: "Salsicha" },
+        { id: 3, text: "Ketchup" },
+      ]);
+    });
   }
 
   return (
