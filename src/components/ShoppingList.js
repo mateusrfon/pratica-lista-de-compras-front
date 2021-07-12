@@ -10,19 +10,13 @@ export default function ShoppingList() {
 
   function loadItems() {
     // Get items from back-end and update state
-    axios.get('http://localhost:3000/list')
+    axios.get('http://localhost:4000/list')
     .then(res => {
       const items = res.data;
       setItems(res.data);
     })
     .catch(() => {
-      alert('não foi possível carregar, carregando lista de exemplo no lugar.');
-      //fake data
-      setItems([
-        { id: 1, text: "Pão" },
-        { id: 2, text: "Salsicha" },
-        { id: 3, text: "Ketchup" },
-      ]);
+      alert('não foi possível carregar a lista.');
     });
   }
 
